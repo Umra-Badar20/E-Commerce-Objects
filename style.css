@@ -10,3 +10,13 @@
         object-fit: contain;
 
 }
+.navbar{
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+}
+select{
+    width: 200px;
+    margin-right: 10px;
+}

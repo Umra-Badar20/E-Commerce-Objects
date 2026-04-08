@@ -60,12 +60,13 @@
             </li>
           </ul>
           <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
+            <select onchange="productChange()" name="products" id="productMenu">
+              <option value="">Select Product</option>
+            </select>
+            
+            <select onchange="filterProduct()" name="category" id="categoryMenu">
+              
+            </select>
             <button class="btn btn-outline-success" type="submit">
               Search
             </button>
@@ -73,7 +74,7 @@
         </div>
       </div>
     </nav>
-    <div id="carouselExampleCaptions" class="carousel slide">
+    <div id="carouselExampleCaptions" class="carousel slide mt-5">
       <div class="carousel-indicators">
         <button
           type="button"
@@ -139,8 +140,15 @@
       </button>
     </div>
     <div id="tsparticles" class="container">
-      <h1 class="text-center">All Products</h1>
+      <div class="row">
+        <div class="col-9">
+          <h1 class="text-center">All Products</h1>
       <div id="allCards" class="mt-2 row row-cols-1 row-cols-md-3 g-4"></div>
+        </div>
+        <div class="col-3 mt-5" id="sidebar">
+         
+        </div>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-firefly@3/tsparticles.preset.firefly.bundle.min.js"></script>
     <script
