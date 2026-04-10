@@ -571,21 +571,85 @@ for (var products in allProducts) {
     `;
 }
 function productChange() {
+  sidebar.style.display="none"
   categoryMenu.innerHTML = `<option  value="">Select Category</option>`;
+  allCards.innerHTML=""
   // console.log(allProducts[productMenu.value]);
   for (var categories in allProducts[productMenu.value]) {
-    // console.log(categories);
-    categoryMenu.innerHTML += `<option  value="${categories}">${categories}</option>
-`;
+    // console.log(allProducts[productMenu.value][categories]);
+    categoryMenu.innerHTML += `<option  value="${categories}">${categories}</option>`;
+    for(var brands in allProducts[productMenu.value][categories]){
+      // console.log(allProducts[productMenu.value][categories][brands]);
+      for(var items in allProducts[productMenu.value][categories][brands]){
+        // console.log(allProducts[productMenu.value][categories][brands][items]);
+        var itemDetails = allProducts[productMenu.value][categories][brands][items]
+        allCards.innerHTML += `
+                <div class="col">
+          <div class="card h-100">
+            <img src="${itemDetails.src}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">${itemDetails.name.toUpperCase()}</h5>
+              <p class="card-text">
+               ${itemDetails.description}
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Price: ${itemDetails.price}/-</small>
+            </div>
+          </div>
+        </div>`;
+      }
+    }
   }
 }
 var sidebar = document.getElementById("sidebar")
 function filterProduct(){
     sidebar.innerHTML=""
+    sidebar.style.display="block";
+    sidebar.classList.remove("sidebar")
+    sidebar.classList.add("sidebar-sticky")
+    allCards.innerHTML = ""
     // console.log(allProducts[productMenu.value][categoryMenu.value]);
     for(var brands in allProducts[productMenu.value][categoryMenu.value]){
-        console.log(allProducts[productMenu.value][categoryMenu.value][brands]);
-        sidebar.innerHTML+=`<h4>${brands}</h4>`
-        
+        // console.log(allProducts[productMenu.value][categoryMenu.value][brands]);
+        sidebar.innerHTML+=`<h5 onclick="filterBrands('${brands}')">${brands}</h5>`
+        for(var items in allProducts[productMenu.value][categoryMenu.value][brands]){
+          // console.log(allProducts[productMenu.value][categoryMenu.value][brands][items]);
+          var itemDetails =  allProducts[productMenu.value][categoryMenu.value][brands][items]
+          allCards.innerHTML += `
+                <div class="col">
+          <div class="card h-100">
+            <img src="${itemDetails.src}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">${itemDetails.name.toUpperCase()}</h5>
+              <p class="card-text">
+               ${itemDetails.description}
+              </p>
+            </div>
+            <div class="card-footer">
+              <small class="text-body-secondary">Price: ${itemDetails.price}/-</small>
+            </div>
+          </div>
+        </div>`;
+        }
     }
 }
+function filterBrands(brand){
+    allCards.innerHTML=""
+    for(var items in allProducts[productMenu.value][categoryMenu.value][brand]){
+        // console.log(allProducts[productMenu.value][categoryMenu.value][brand][items]);
+        var itemDetails=allProducts[productMenu.value][categoryMenu.value][brand][items]  
+        allCards.innerHTML+=`
+        <div class="col">
+          <div class="card h-100">
+            <img src="${itemDetails.src}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title">${itemDetails.name.toUpperCase()}</h5>
+              <p class="card-text">
+               ${itemDetails.description}
+              </p>
+            </div>
+          </div>
+        </div>`;
+    }
+  }

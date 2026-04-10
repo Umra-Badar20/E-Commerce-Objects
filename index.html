@@ -63,10 +63,12 @@
             <select onchange="productChange()" name="products" id="productMenu">
               <option value="">Select Product</option>
             </select>
-            
-            <select onchange="filterProduct()" name="category" id="categoryMenu">
-              
-            </select>
+
+            <select
+              onchange="filterProduct()"
+              name="category"
+              id="categoryMenu"
+            ></select>
             <button class="btn btn-outline-success" type="submit">
               Search
             </button>
@@ -141,13 +143,14 @@
     </div>
     <div id="tsparticles" class="container">
       <div class="row">
-        <div class="col-9">
+        <div class="col-9 main-content">
           <h1 class="text-center">All Products</h1>
-      <div id="allCards" class="mt-2 row row-cols-1 row-cols-md-3 g-4"></div>
+          <div
+            id="allCards"
+            class="mt-2 row row-cols-1 row-cols-md-3 g-4"
+          ></div>
         </div>
-        <div class="col-3 mt-5" id="sidebar">
-         
-        </div>
+        <div class="col-3 mt-5 sidebar" id="sidebar"></div>
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/preset-firefly@3/tsparticles.preset.firefly.bundle.min.js"></script>
